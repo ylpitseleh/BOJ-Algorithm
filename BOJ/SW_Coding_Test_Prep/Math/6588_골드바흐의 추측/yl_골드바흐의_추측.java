@@ -2,8 +2,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-//¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼ »ç¿ë - Á¦ÀÏ È¿À²ÀûÀÎ ¹æ¹ı
-public class °ñµå¹ÙÈåÀÇ_ÃßÃø {
+//ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ì˜ ì²´ ì‚¬ìš© - ì œì¼ íš¨ìœ¨ì ì¸ ë°©ë²•
+//në³´ë‹¤ ì‘ì€ ì†Œìˆ˜ë¥¼ ArrayListì— ëª¨ë‘ ë„£ì–´ ë°˜ë³µë¬¸ì´ ëŒë•Œë§ˆë‹¤ ìƒˆë¡œ ê°±ì‹ í–ˆë”ë‹ˆ 50%ì—ì„œ ì‹œê°„ì´ˆê³¼ê°€ ë°œìƒí–ˆã…•ë‹¤.
+public class ê³¨ë“œë°”íì˜_ì¶”ì¸¡ {
 	public static final int MAX = 1000000;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,7 +26,7 @@ public class °ñµå¹ÙÈåÀÇ_ÃßÃø {
 			if (n == 0)
 				break;
 			boolean ok = false;
-			//³»°¡ 2Áß Æ÷¹®À¸·Î Â§ °ÍÀ» 1Áß Æ÷¹®À¸·Î °³¼±Çß´Ù. ±â¾ïÇÏ±â !!
+			//ë‚´ê°€ 2ì¤‘ í¬ë¬¸ìœ¼ë¡œ ì§  ê²ƒì„ 1ì¤‘ í¬ë¬¸ìœ¼ë¡œ ê°œì„ í–ˆë‹¤. ê¸°ì–µí•˜ê¸° !!
 			for (int i=2; i<=n/2; i++) {
 				if (isPrime[i] && isPrime[n-i]) {
 					System.out.println(n+" = "+i+" + "+(n-i));
