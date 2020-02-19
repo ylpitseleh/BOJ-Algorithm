@@ -1,8 +1,3 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-import java.io.IOException;
-
 // 1 <= E <= 15
 // 1 <= S <= 28
 // 1 <= M <= 19
@@ -26,6 +21,11 @@ import java.io.IOException;
 // Can't figure out any pattern!
 // Let's just use bruteforce!
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.io.IOException;
+
 public class hm_날짜_계산 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -38,12 +38,18 @@ public class hm_날짜_계산 {
 		int s = 1;
 		int m = 1;
 		int cnt = 1;
-		while(!(e == ans_e && s == ans_s && m == ans_m))
-		{
-			cnt++;
+		while (!(e == ans_e && s == ans_s && m == ans_m)) {
 			e++;
 			s++;
 			m++;
+			if (e > 15)
+				e = 1;
+			if (s > 28)
+				s = 1;
+			if (m > 19)
+				m = 1;
+
+			cnt++;
 		}
 		System.out.println(cnt);
 	}
