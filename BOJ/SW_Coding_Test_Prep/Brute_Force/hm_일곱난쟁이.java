@@ -20,7 +20,7 @@ public class hm_일곱난쟁이 {
 				if (sum - heights[i] - heights[j] == 100)
 				{
 					prt_solution(heights, i, j);
-					i = 9;
+					i = 9; // 요놈 안 붙여서 계속 틀렸음
 					j = 9;
 				}
 			}
