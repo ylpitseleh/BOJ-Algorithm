@@ -2,8 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-// ÃÖ¼Ò°ø¹è¼ö ±¸ÇÏ±â - À¯Å¬¸®µå È£Á¦¹ı »ç¿ë
-public class yl_ÃÖ¼Ò°ø¹è¼ö {
+// ìµœì†Œê³µë°°ìˆ˜ êµ¬í•˜ê¸° - ìœ í´ë¦¬ë“œ í˜¸ì œë²• ì‚¬ìš©
+public class yl_ìµœì†Œê³µë°°ìˆ˜ {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

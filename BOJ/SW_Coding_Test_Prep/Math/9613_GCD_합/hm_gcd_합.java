@@ -15,7 +15,7 @@ import java.io.*;
 3	125 15 25
 */
 
-public class hm_gcd_합 {
+public class hm_GCD_합 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

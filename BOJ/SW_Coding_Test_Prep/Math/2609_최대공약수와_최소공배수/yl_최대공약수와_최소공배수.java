@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class yl_ÃÖ´ë°ø¾à¼ö¿Í_ÃÖ¼Ò°ø¹è¼ö {
+public class yl_ìµœëŒ€ê³µì•½ìˆ˜ì™€_ìµœì†Œê³µë°°ìˆ˜ {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
