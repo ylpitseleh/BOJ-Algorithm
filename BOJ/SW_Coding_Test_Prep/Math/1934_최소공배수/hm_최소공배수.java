@@ -48,3 +48,4 @@ public class hm_최소공배수 {
 		return a * b / getGcd(a, b);
 	}
 }
+//yl - 변수명과 함수 구분이 인상적입니다!

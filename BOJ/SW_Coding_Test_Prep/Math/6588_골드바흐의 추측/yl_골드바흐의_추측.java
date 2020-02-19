@@ -2,9 +2,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+<<<<<<< HEAD
 /// The import java.util.ArrayList is never used! XD
 //에라토스테네스의 체 사용 - 제일 효율적인 방법
 public class yl_골드바흐의_추측 {
+=======
+//에라토스테네스의 체 사용 - 제일 효율적인 방법
+//n보다 작은 소수를 ArrayList에 모두 넣어 반복문이 돌때마다 새로 갱신했더니 50%에서 시간초과가 발생했다.
+public class 골드바흐의_추측 {
+>>>>>>> 9661b7c0cb7d0d4aec363bc63d03b80934d72e6e
 	public static final int MAX = 1000000;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
