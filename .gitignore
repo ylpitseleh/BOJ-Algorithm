@@ -1,1 +1,23 @@
-/build/
+# test files
+~*
+m.c
+
+########################################
+
+# Mac OS finder
+.DS_Store
+
+# vscode configurations
+.vscode
+
+# vim swap file
+.*.swp
+.*.swo
+
+# gcc/g++ output files
+*.out
+*.o
+*.exe
+
+# java output files
+*.class
