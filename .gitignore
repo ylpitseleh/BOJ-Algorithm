@@ -21,3 +21,4 @@ m.c
 
 # java output files
 *.class
+/build/
