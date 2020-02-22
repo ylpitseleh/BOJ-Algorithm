@@ -17,6 +17,7 @@ m.c
 # gcc/g++ output files
 *.out
 *.o
+*.exe
 
 # java output files
 *.class
