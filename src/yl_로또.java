@@ -33,7 +33,11 @@ public class yl_로또 {
 			}
 			System.out.println();
 		}
-		
+		/*for(int i=0; i<N; i++) {
+			if (visited[i] == 1)
+				System.out.print(arr[i]+" ");
+		}
+		System.out.println();*/
 		for(int i=start; i<N; i++) {
 			visited[i] = 1;
 			DFS(i+1, depth+1);
