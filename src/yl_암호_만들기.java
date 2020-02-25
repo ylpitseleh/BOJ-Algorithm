@@ -3,12 +3,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
-
+//백트래킹
 public class yl_암호_만들기 {
 	static int L;
 	static int C;
 	static String[] alpha;
-	static int[] visited;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,44 +15,42 @@ public class yl_암호_만들기 {
 		L = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
 		alpha = new String[C];
-		visited = new int[C];
 		StringTokenizer st1 = new StringTokenizer(br.readLine());
 		for (int i = 0; i < C; i++) {
 			alpha[i] = st1.nextToken();
 		}
 		Arrays.sort(alpha);
 		// 최소 한 개의 모음과 두 개의 자음으로 구성되어 있음.
-		solve(0, 0);
+		solve("", 0);
 	}
 
-	static int consonants; //자음
-	static int vowels; //모음
-	public static void solve(int idx, int depth) {
-		if (depth > L)
+	public static void solve(String password, int depth) {
+		if (password.length() == L) {
+			if (check(password)) {
+				System.out.println(password);
+			}
 			return ;
-		consonants = 0;
-		vowels = 0;
-		for (int i = 0; i < C; i++) {
-			if (visited[i] == 1) {
-				if (alpha[i] == "a" || alpha[i] == "e" || alpha[i] == "i" || alpha[i] == "o" || alpha[i] == "u")
-					vowels++;
-				else
-					consonants++;
-			}
 		}
-		if (vowels + consonants == L && vowels >= 1 && consonants >= 2) {
-			for (int i = 0; i < C; i++) {
-				if (visited[i] == 1) {
-					System.out.print(alpha[i]);
-				}
-			}
-			System.out.println();
+		if (depth >= C)
+			return ;
+		//System.out.println(password);
+		solve(password + alpha[depth], depth + 1);
+		solve(password, depth + 1);
+	}
+	
+	public static boolean check(String password) {
+		int consonants = 0; //자음
+		int vowels = 0; //모음
+		for(char c : password.toCharArray()) {
+			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+				vowels++;
+			else
+				consonants++;
 		}
-		for (int i = idx; i < C; i++) {
-			visited[i] = 1;
-			solve(i + 1, depth + 1);
-			visited[i] = 0;
-		}
+		if (consonants >= 2 && vowels >= 1)
+			return true;
+		else
+			return false;
 	}
 
 }
