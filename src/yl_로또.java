@@ -5,16 +5,18 @@ import java.util.StringTokenizer;
 //https://zoonvivor.tistory.com/108
 //https://mygumi.tistory.com/191
 //백트래킹 기초
+
 public class yl_로또 {
 	static int N;
 	static int[] arr;
 	static int[] visited;
+
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
-			if(N == 0)
+			if (N == 0)
 				break;
 			arr = new int[N];
 			visited = new int[N];
@@ -25,25 +27,44 @@ public class yl_로또 {
 			System.out.println();
 		}
 	}
+
 	public static void DFS(int start, int depth) {
 		if (depth == 6) {
-			for(int i=0; i<N; i++) {
+			for (int i = 0; i < N; i++) {
 				if (visited[i] == 1)
-					System.out.print(arr[i]+" ");
+					System.out.print(arr[i] + " ");
 			}
 			System.out.println();
 		}
-		/*for(int i=0; i<N; i++) {
-			if (visited[i] == 1)
-				System.out.print(arr[i]+" ");
-		}
-		System.out.println();*/
-		for(int i=start; i<N; i++) {
+		/*
+		 * for(int i=0; i<N; i++) { if (visited[i] == 1) System.out.print(arr[i]+" "); }
+		 * System.out.println();
+		 */
+		for (int i = start; i < N; i++) {
 			visited[i] = 1;
-			DFS(i+1, depth+1);
-			visited[i] = 0; //백트래킹. 탐색을 한 후에 다시 값을 탐색하기 이전으로 되돌림.
+			DFS(i + 1, depth + 1);
+			visited[i] = 0; // 백트래킹. 탐색을 한 후에 다시 값을 탐색하기 이전으로 되돌림.
 		}
+
 	}
-	
+
+	/*DFS(0, "");
+	System.out.println();
+}
+
+}
+	이렇게도 할 수 있는데 답 출력할때 공백때문에 visited[i]쓰는게 편함.
+	public static void DFS(int depth, String ans) {
+		if (ans.length() == 6) {
+			System.out.println(ans);
+		}
+
+		if (depth > 6)
+			return;
+
+		DFS(depth + 1, ans + Integer.toString(arr[depth]));
+		DFS(depth + 1, ans);
+
+	}*/
 
 }

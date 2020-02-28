@@ -53,6 +53,7 @@ public class yl_다음_순열 {
 			tmp = arr[i];
 			arr[i] = arr[j];
 			arr[j] = tmp;
+			//오름차순으로 만들기 위한 건데 이미 내림차순으로 정렬 되어있으므로 swap해서 바꿔주기만 하면 됨.
 			i += 1;
 			j -= 1;
 		}
