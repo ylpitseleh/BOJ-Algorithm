@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class yl_n과m1 {
+public class yl_N과M1 {
 	static int N;
 	static int M;
 	static boolean[] visited;
