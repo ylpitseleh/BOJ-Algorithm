@@ -2,7 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-
+//arr를 출력 용도로 사용함
+//재귀가 잘 이해가 안 감
 public class yl_N과M1 {
 	static int N;
 	static int M;
@@ -31,6 +32,12 @@ public class yl_N과M1 {
 				continue;
 			visited[i] = true; //방문하지 않았으면 방문했다고 바꿔줌.
 			arr[depth] = i;
+			
+		/*	System.out.print("depth : "+depth+" / ");
+			for (int j=1; j<N+1; j++)
+				System.out.print(visited[j]+" ");
+			System.out.println();*/
+			
 			dfs(depth+1);
 			visited[i] = false;
 		}

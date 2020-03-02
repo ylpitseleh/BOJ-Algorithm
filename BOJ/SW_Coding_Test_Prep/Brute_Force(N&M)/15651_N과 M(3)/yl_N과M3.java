@@ -3,7 +3,6 @@ import java.io.OutputStreamWriter;
 import java.util.Scanner;
 //시간초과 해결 위해 String 대신 StringBuilder 활용
 //System.out.print 대신 BufferedWriter 사용
-//trim : 문자열 가장 끝 왼쪽, 오른쪽의 공백을 다 제거해줌
 public class yl_N과M3 {
 	static int N;
 	static int M;
