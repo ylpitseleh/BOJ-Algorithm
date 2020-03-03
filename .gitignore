@@ -1,6 +1,6 @@
 .git
 .git_bak
-src/*
+src/
 
 # test files
 ~*
