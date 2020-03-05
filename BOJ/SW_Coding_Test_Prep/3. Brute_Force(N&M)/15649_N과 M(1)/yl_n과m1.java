@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class yl_n과m1 {
+public class yl_N과M1 {
 	static int N;
 	static int M;
 	static boolean[] visited;
@@ -17,7 +17,7 @@ public class yl_n과m1 {
 		arr = new int[M]; //정답 넣어줄 배열
 		dfs(0);
 	}
-	
+
 	public static void dfs(int depth) {
 		if (depth == M) {
 			for(int i=0; i<M; i++) {
