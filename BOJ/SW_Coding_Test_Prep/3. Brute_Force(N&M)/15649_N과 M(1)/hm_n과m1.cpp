@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hm_N과M1.cpp                                        :+:      :+:    :+:   */
+/*   hm_n과m1.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmin <hmin@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 13:13:57 by hmin              #+#    #+#             */
-/*   Updated: 2020/03/05 16:53:30 by hmin             ###   ########.fr       */
+/*   Updated: 2020/03/05 17:33:26 by hmin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ https://www.acmicpc.net/board/view/22716 (추가 설명 및 다른 언어 빠른
 
 #include <algorithm>
 #include <iostream>
-#include <vector>
-#include <string>
 
 using namespace std;
 
@@ -52,7 +50,6 @@ void dfs(int depth)
 {
 	if (depth == m)
 	{
-		string tmp = "";
 		for (int i = 0; i < m; i++)
 			cout << arr[i] << " ";
 		// cout << endl; // 시간초과 원인
