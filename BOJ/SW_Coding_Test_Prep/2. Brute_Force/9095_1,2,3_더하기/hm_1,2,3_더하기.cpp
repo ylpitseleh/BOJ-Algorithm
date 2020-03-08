@@ -6,11 +6,9 @@
 /*   By: hmin <hmin@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 21:46:33 by hmin              #+#    #+#             */
-/*   Updated: 2020/03/08 23:39:44 by hmin             ###   ########.fr       */
+/*   Updated: 2020/03/09 01:55:45 by hmin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// 이제부터 google c++ style guide에 따른 naming convention 일부 적용
 
 /*
 그냥 나 혼자 문제를 풀려고 했더니, 엄청 비효율적인 dfs 방식으로 문제를 어렵게
@@ -39,7 +37,7 @@ ex)
 #include <iostream>
 using namespace std;
 
-const int kMaxNum = 11;
+const int MAX_NUM = 11;
 
 int main(void)
 {
@@ -49,13 +47,13 @@ int main(void)
 	int case_cnt;
 	cin >> case_cnt;
 
-	int ans[kMaxNum] = {
+	int ans[MAX_NUM] = {
 		1,
 	};
 
 	// ans[N] = ans[N-1] + ans[N-2] + ans[N-3]
 	// 위의 점화식으로 ans 값 미리 할당
-	for (int i = 1; i <= kMaxNum; i++)
+	for (int i = 1; i <= MAX_NUM; i++)
 	{
 		if (i - 1 >= 0)
 			ans[i] += ans[i - 1];
