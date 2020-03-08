@@ -6,7 +6,7 @@
 /*   By: hmin <hmin@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 01:06:41 by hmin              #+#    #+#             */
-/*   Updated: 2020/03/08 21:26:27 by hmin             ###   ########.fr       */
+/*   Updated: 2020/03/08 22:41:37 by hmin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void bfs(int start)
 		start = q.front();
 		q.pop();
 		cout << start << " ";
-		for (int i=1; i<=n; i++)
+		for (int i = 1; i <= n; i++)
 		{
 			if (!isVisited[i] && isAdj[start][i])
 			{
