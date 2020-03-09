@@ -6,7 +6,7 @@
 /*   By: hmin <hmin@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 01:14:40 by hmin              #+#    #+#             */
-/*   Updated: 2020/03/09 02:05:19 by hmin             ###   ########.fr       */
+/*   Updated: 2020/03/09 19:35:30 by hmin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void swap_num(int idx1, int idx2)
 
 /*
 #include <algorithm>
-next_permutation(v.beign(), v.end()); //arr도 가능
+next_permutation(v.begin(), v.end()); //arr도 가능
 위와 같이 STL을 사용할 수도 있지만, 일단 다음 순열 문제 푼 것을 활용.
  */
 
