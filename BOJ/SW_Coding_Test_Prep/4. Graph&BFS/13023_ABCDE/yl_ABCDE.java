@@ -1,5 +1,3 @@
-package Graph_and_BFS;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,10 +5,11 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 //백트래킹 인접리스트 버전
 //백트래킹인지 dfs인지 문제만 보고 알 수 있나?
-public class yl_ABCDE {
+public class notepad {
 	static int N, M, res = 0;
 	static ArrayList<Integer>[] al;
 	static boolean visited[];
+	
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -34,21 +33,22 @@ public class yl_ABCDE {
 				break ;
 		}
 		System.out.println(res);
+		
+		
 	}
-	public static void dfs(int index, int count) {
-		if (count == 4) {
+	public static void dfs(int idx, int cnt) {
+		if (cnt == 4) {
 			res = 1;
 			return ;
 		}
 		
-		visited[index] = true;
-		int alLen = al[index].size();
-		for (int i=0; i<alLen; i++) {
-			int j = al[index].get(i);
+		visited[idx] = true;
+		for(int i=0; i<al[idx].size(); i++) {
+			int j = al[idx].get(i);
 			if (!visited[j])
-				dfs(j, count + 1);
+				dfs(j, cnt + 1);
 		}
-		visited[index] = false;
+		visited[idx] = false;
 	}
 
 }
