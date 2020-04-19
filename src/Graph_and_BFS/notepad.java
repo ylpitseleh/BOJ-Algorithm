@@ -28,24 +28,25 @@ public class notepad {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
+		N = Integer.parseInt(st.nextToken());
 		map = new int[N][M];
 		visited = new boolean[N][M];
 		for (int i = 0; i < N; i++) {
-			String s = br.readLine();
+			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < M; j++) {
-				map[i][j] = s.charAt(j)-'0';
+				map[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-		bfs(0, 0);
-		System.out.println(map[N-1][M-1]);
-	}
-
-	public static void bfs(int y, int x) {
-		visited[y][x] = true;
-		q.add(new Pos(y, x));
-
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<M; j++) {
+				if (map[i][j] == 1) {
+					visited[i][j] = true;
+					q.offer(new Pos(i, j));
+				}
+			}
+		}
+		
 		while (!q.isEmpty()) {
 			Pos p = q.poll();
 			for (int j = 0; j < 4; j++) {
@@ -54,11 +55,26 @@ public class notepad {
 
 				if (ny < 0 || ny >= N || nx < 0 || nx >= M)
 					continue;
-				if (!visited[ny][nx] && map[ny][nx] == 1) {
+				if (map[ny][nx] == 0) {
 					map[ny][nx] = map[p.y][p.x] + 1;
-					q.add(new Pos(ny, nx));
+					q.offer(new Pos(ny, nx));
 				}
 			}
 		}
+		
+		int zeroFlag = 0;
+		int max = 0;
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<M; j++) {
+				if (map[i][j] == 0)
+					zeroFlag = 1;
+				max = Math.max(max, map[i][j]);
+			}
+		}
+		if (zeroFlag == 1)
+			System.out.println("-1");
+		else
+			System.out.println(max - 1);
+		
 	}
 }
