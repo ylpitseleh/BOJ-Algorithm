@@ -1,4 +1,4 @@
-package Graph_and_BFS;
+package Graph_and_BFS.이모티콘_14226;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 // 너모 어려움. 다시 풀어보기. 이 방법 절대 못 생각해내겠음.
-public class notepad {
+// visited를 2차원 배열로 만드는게 관건.
+public class yl_이모티콘 {
 	static int S;
 	static boolean visited[][];
 	static Queue<Emoticon> q = new LinkedList<>();
@@ -30,6 +31,8 @@ public class notepad {
 		visited = new boolean[1001][1001];
 		
 		q.add(new Emoticon(1, false, 0, 0));
+		// 화면에 있는 이모티콘 개수가 같아도 클립보드에 몇 개 있냐에 따라 달라지므로 visited를 2차원 배열로 만들어야 함.
+		// display * clipBoard
 		visited[S][0] = true;
 		
 		while (!q.isEmpty()) {
