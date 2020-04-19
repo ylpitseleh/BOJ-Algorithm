@@ -8,73 +8,43 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class notepad {
-	static int N, M; 
-	static int map[][];
-	static boolean visited[][];
-	static int dy[] = { -1, 1, 0, 0 };
-	static int dx[] = { 0, 0, -1, 1 };
-	static Queue<Pos> q = new LinkedList<Pos>();
-	static class Pos {
-		int y;
-		int x;
-
-		Pos(int y, int x) {
-			this.y = y;
-			this.x = x;
-		}
-	}
+	static int N, K;
+	static int map[];
+	static int dx[] = { -1, 1, 2 };
+	static Queue<Integer> q = new LinkedList<>();
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		M = Integer.parseInt(st.nextToken());
-		N = Integer.parseInt(st.nextToken());
-		map = new int[N][M];
-		visited = new boolean[N][M];
-		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine());
-			for (int j = 0; j < M; j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-			}
-		}
-		for (int i=0; i<N; i++) {
-			for (int j=0; j<M; j++) {
-				if (map[i][j] == 1) {
-					visited[i][j] = true;
-					q.offer(new Pos(i, j));
-				}
-			}
-		}
-		
-		while (!q.isEmpty()) {
-			Pos p = q.poll();
-			for (int j = 0; j < 4; j++) {
-				int ny = p.y + dy[j];
-				int nx = p.x + dx[j];
+		N = Integer.parseInt(st.nextToken()); //수빈 위치
+		K = Integer.parseInt(st.nextToken()); //동생 위치
+		map = new int[110001];
+		bfs(N);
+		System.out.println(map[K]);
 
-				if (ny < 0 || ny >= N || nx < 0 || nx >= M)
+	}
+
+	public static void bfs(int N) {
+		q.offer(N);
+
+		while (!q.isEmpty()) {
+			int x = q.poll();
+			if (x == K)
+				return ;
+			for (int i = 0; i < 3; i++) {
+				int nx = x + dx[i];
+				if (i == 2)
+					nx = x * dx[i];
+
+				if (nx < 0 || nx >= 110001)
 					continue;
-				if (map[ny][nx] == 0) {
-					map[ny][nx] = map[p.y][p.x] + 1;
-					q.offer(new Pos(ny, nx));
+				//먼저 들어간게 먼저 나오는 큐의 특성 때문에 굳이 map[nx] > map[x] + 1로 비교 안 해줘도 됨.
+				//원래 if(map[nx] == 0 || map[nx] > map[x] + 1) 해서 틀렸음.
+				if (map[nx] == 0) {
+					map[nx] = map[x] + 1;
+					q.offer(nx);
 				}
 			}
 		}
-		
-		int zeroFlag = 0;
-		int max = 0;
-		for (int i=0; i<N; i++) {
-			for (int j=0; j<M; j++) {
-				if (map[i][j] == 0)
-					zeroFlag = 1;
-				max = Math.max(max, map[i][j]);
-			}
-		}
-		if (zeroFlag == 1)
-			System.out.println("-1");
-		else
-			System.out.println(max - 1);
-		
 	}
 }

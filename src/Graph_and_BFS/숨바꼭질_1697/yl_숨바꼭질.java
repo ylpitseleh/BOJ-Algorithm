@@ -10,38 +10,40 @@ import java.util.StringTokenizer;
 
 public class yl_숨바꼭질 {
 	static int N, K;
+	static int map[];
+	static int dx[] = { -1, 1, 2 };
 	static Queue<Integer> q = new LinkedList<>();
-	static int arr[];
-	static int dx[] = {-1, 1, 2};
-	public static void main(String[] args) throws IOException{
+
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken()); //수빈이가 있는 위치
-		K = Integer.parseInt(st.nextToken()); //동생이 있는 위치
-		arr = new int[110001];
-		Arrays.fill(arr, Integer.MAX_VALUE);
+		N = Integer.parseInt(st.nextToken()); //수빈 위치
+		K = Integer.parseInt(st.nextToken()); //동생 위치
+		map = new int[110001];
 		bfs(N);
-		System.out.print(arr[K]);
+		System.out.println(map[K]);
+
 	}
-	
-	public static void bfs(int n) {
-		q.offer(n);
-		arr[n] = 0;
-		
+
+	public static void bfs(int N) {
+		q.offer(N);
+
 		while (!q.isEmpty()) {
-			int num = q.poll();
-			if (num == K)
-				break ;
-			for(int i=0; i<3; i++) {
-				int nx = num + dx[i];
+			int x = q.poll();
+			if (x == K)
+				return ;
+			for (int i = 0; i < 3; i++) {
+				int nx = x + dx[i];
 				if (i == 2)
-					nx = num * dx[i];
-				
-				if (nx >= 0 && nx <= 110000 
-						&& arr[nx] > arr[num] + 1) {
-					//arr[nx] > arr[num] + 1 을 map[nx] == 0로 바꿔도 됨.
-					q.add(nx);
-					arr[nx] = arr[num] + 1;
+					nx = x * dx[i];
+
+				if (nx < 0 || nx >= 110001)
+					continue;
+				//먼저 들어간게 먼저 나오는 큐의 특성 때문에 굳이 map[nx] > map[x] + 1로 비교 안 해줘도 됨.
+				//원래 if(map[nx] == 0 || map[nx] > map[x] + 1) 해서 틀렸음.
+				if (map[nx] == 0) {
+					map[nx] = map[x] + 1;
+					q.offer(nx);
 				}
 			}
 		}
