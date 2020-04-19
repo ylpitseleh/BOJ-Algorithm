@@ -3,57 +3,61 @@ package Graph_and_BFS;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class notepad {
-	static int w, h, ans = 0;
+	static int N, M; 
 	static int map[][];
 	static boolean visited[][];
-	static int dy[] = { -1, 1, 0, 0, -1, -1, 1, 1 };
-	static int dx[] = { 0, 0, -1, 1, -1, 1, -1, 1 };
+	static int dy[] = { -1, 1, 0, 0 };
+	static int dx[] = { 0, 0, -1, 1 };
+	static Queue<Pos> q = new LinkedList<Pos>();
+	static class Pos {
+		int y;
+		int x;
+
+		Pos(int y, int x) {
+			this.y = y;
+			this.x = x;
+		}
+	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		while (true) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			w = Integer.parseInt(st.nextToken());
-			h = Integer.parseInt(st.nextToken());
-			if (w == 0 && h == 0)
-				break;
-			map = new int[h][w];
-			visited = new boolean[h][w];
-			for (int i = 0; i < h; i++) {
-				st = new StringTokenizer(br.readLine());
-				for (int j = 0; j < w; j++) {
-					map[i][j] = Integer.parseInt(st.nextToken());
-				}
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		map = new int[N][M];
+		visited = new boolean[N][M];
+		for (int i = 0; i < N; i++) {
+			String s = br.readLine();
+			for (int j = 0; j < M; j++) {
+				map[i][j] = s.charAt(j)-'0';
 			}
-			ans = 0;
-			for (int i = 0; i < h; i++) {
-				for (int j = 0; j < w; j++) {
-					if (!visited[i][j] && map[i][j] == 1) {
-						ans++;
-						dfs(i, j);
-					}
-				}
-			}
-			System.out.println(ans);
 		}
+		bfs(0, 0);
+		System.out.println(map[N-1][M-1]);
 	}
 
-	public static void dfs(int y, int x) {
+	public static void bfs(int y, int x) {
 		visited[y][x] = true;
+		q.add(new Pos(y, x));
 
-		for (int j = 0; j < 8; j++) {
-			int ny = y + dy[j];
-			int nx = x + dx[j];
-			
-			if (ny < 0 || ny >= h || nx < 0 || nx >= w)
-				continue;
-			if (!visited[ny][nx] && map[ny][nx] == 1) {
-				dfs(ny, nx);
+		while (!q.isEmpty()) {
+			Pos p = q.poll();
+			for (int j = 0; j < 4; j++) {
+				int ny = p.y + dy[j];
+				int nx = p.x + dx[j];
+
+				if (ny < 0 || ny >= N || nx < 0 || nx >= M)
+					continue;
+				if (!visited[ny][nx] && map[ny][nx] == 1) {
+					map[ny][nx] = map[p.y][p.x] + 1;
+					q.add(new Pos(ny, nx));
+				}
 			}
 		}
 	}
