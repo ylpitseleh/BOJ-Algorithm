@@ -1,4 +1,4 @@
-package Brute_Force_N_M;
+package Brute_Force_NM.N과M9_15663;
 
 import java.io.BufferedReader;
 import java.io.IOException;
