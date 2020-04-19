@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-// 최소공배수 구하기 - 유클리드 호제법 사용
+//최소공배수 구하기 - 유클리드 호제법 사용
 public class yl_최소공배수 {
 
 	public static void main(String[] args) throws IOException {
