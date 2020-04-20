@@ -2,7 +2,7 @@
 At least 2 hours of algorithm problem solving a day
 
 ✅ : Yoolee ☑️ : Hmin
-## 4월
+## 2020-04
 <table>
 <tr><td>
   
