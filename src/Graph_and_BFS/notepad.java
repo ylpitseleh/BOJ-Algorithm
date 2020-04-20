@@ -1,69 +1,57 @@
 package Graph_and_BFS;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-// 너모 어려움. 다시 풀어보기. 이 방법 절대 못 생각해내겠음.
+/*
+ * 다익스트라 알고리즘 : 다이나믹 프로그래밍을 활용한 대표적인 최단 경로 탐색 알고리즘
+ * 기본 로직 - 첫 정점을 기준으로 연결되어 있는 정점들을 추가해가며, 최단 거리를 갱신하는 것.
+ * 		   정점을 잇기 전까지는 시작점을 제외한 정점들은 모두 무한대 값을 가짐.
+ * 최소 값을 찾기 위해 bfs 하기 전에 Arrays.fill(map, 100009) 했음.
+ */
 public class notepad {
-	static int S;
-	static boolean visited[][];
-	static Queue<Emoticon> q = new LinkedList<>();
-	static class Emoticon {
-		int display;
-		boolean copyFlag;
-		int clipBoard;
-		int n;
-		Emoticon (int display, boolean copyFlag, int clipBoard, int n) {
-			this.display = display;
-			this.copyFlag = copyFlag; //복사한 상태면 true, 복사한게 없으면 false
-			this.clipBoard = clipBoard; 
-			this.n = n; //필요한 시간 (초)
-		}
-	}
+	static int N, K;
+	static int map[];
+	static Queue<Integer> q = new LinkedList<>();
+	static int dx[] = {1, -1, 2};
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		S = Integer.parseInt(br.readLine());
-		visited = new boolean[1001][1001];
-		
-		q.add(new Emoticon(1, false, 0, 0));
-		visited[S][0] = true;
-		
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
+		map = new int[110000];
+		Arrays.fill(map, 100009);
+		bfs(N);
+		System.out.println(map[K]);
+	}
+	
+	public static void bfs (int start) {
+		q.add(start);
+		map[N] = 0;
 		while (!q.isEmpty()) {
-			Emoticon p = q.poll();
-			if (p.display == S) {
-				System.out.println(p.n);
-				return ;
-			}
-			
+			int x = q.poll();
+			if (x == K)
+				break ;
 			for (int i=0; i<3; i++) {
-				int nDisplay = p.display;
-				boolean nCopyFlag = p.copyFlag;
-				int nClipBoard = p.clipBoard;
-				// 화면 모두 복사
-				if (i == 0) {
-					nCopyFlag = true;
-					nClipBoard = nDisplay; // 덮어쓰기
-				}
-				// 클립보드를 화면에 붙여넣기
-				else if (i == 1) {
-					if(!nCopyFlag)
-						continue ;
-					nDisplay += nClipBoard;
-				}
-				// 화면의 이모티콘 - 1
-				else {
-					nDisplay--;
-				}
-				if (nDisplay < 1 || nDisplay > 1000)
+				int nx = x + dx[i];
+				if (i == 2)
+					nx = x * dx[i];
+				if (nx < 0 || nx >= 110000 || nx == N)
 					continue ;
-				if (visited[nDisplay][nClipBoard])
+				if (map[nx] <= map[x])
 					continue ;
-				visited[nDisplay][nClipBoard] = true;
-				q.add(new Emoticon(nDisplay, nCopyFlag, nClipBoard, p.n + 1));
+				if (i == 2) 
+					map[nx] = map[x];
+				else 
+					map[nx] = map[x] + 1;
+				
+				q.add(nx);
 			}
 		}
 	}
