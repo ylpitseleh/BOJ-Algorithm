@@ -13,6 +13,7 @@ m.c
 
 # vscode configurations
 .vscode
+.history
 
 # vim swap file
 .*.swp
