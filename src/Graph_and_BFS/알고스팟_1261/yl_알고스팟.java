@@ -1,4 +1,4 @@
-package Graph_and_BFS;
+package Graph_and_BFS.알고스팟_1261;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,10 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
-public class notepad {
+//다익스트라 알고리즘
+//https://kim6394.tistory.com/178
+//Priority Queue로 벽이 없는 곳(0)을 우선순위로.
+public class yl_알고스팟 {
 	static int N, M;
 	static int map[][];
 	static int dist[][];
@@ -26,6 +29,8 @@ public class notepad {
 		}
 		@Override
 		public int compareTo(Pos p) {
+			//cost를 기준으로 반환 값이 음수, 양수인지에 따라 우선순위가 결정된다.
+			//cost가 작으면 음수이므로 우선순위가 높음.
 			return this.cost < p.cost ? -1 : 1;
 		}
 	}
@@ -51,12 +56,10 @@ public class notepad {
 		
 		bfs(0, 0);
 		
-		for (int i=0; i<N; i++) {
-			for (int j=0; j<M; j++) {
-				System.out.print(dist[i][j]);
-			}
-			System.out.println();
-		}
+		/*
+		 * for (int i=0; i<N; i++) { for (int j=0; j<M; j++) {
+		 * System.out.print(dist[i][j]); } System.out.println(); }
+		 */
 		
 		System.out.println(dist[N-1][M-1]);
 	}	
@@ -66,6 +69,7 @@ public class notepad {
 		
 		while (!pq.isEmpty()) {
 			Pos p = pq.poll();
+			//System.out.println(p.y+" "+p.x);
 			dist[0][0] = 0;
 			if (p.y == N && p.x == M) 
 				return ;
