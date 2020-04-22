@@ -1,7 +1,7 @@
 # BOJ_Algorithm
 
 <!-- At least 2 hours of algorithm problem solving a day -->
-Solve algorithmic problems of at least 2 hours per day
+Solve algorithm problems for at least 2 hours per day
 
 ✅ : Yoolee ☑️ : Hmin
 
