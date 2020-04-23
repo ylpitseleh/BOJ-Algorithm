@@ -7,94 +7,93 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-/*
- * 아이디어 떠올리기가 힘듦.
- */
+
 public class yl_탈출 {
+	static int N, M, cnt = 0;
+	static char[][] map;
+	static int[][] water;
+	static int[][] move;
+	static int[][] visited;
+	static int dx[] = { -1, 1, 0, 0 };
+	static int dy[] = { 0, 0, 1, -1 };
+	static Queue<Pos> q = new LinkedList<>();
+
 	static class Pos {
 		int y;
 		int x;
 
-		Pos(int y, int x) {
+		public Pos(int y, int x) {
 			this.y = y;
 			this.x = x;
 		}
 	}
-	static int R, C;
-	static char[][] map;
-	static int[][] move;
-	static int[][] water;
-	static boolean[][] visited;
-	static int dy[] = { -1, 1, 0, 0 };
-	static int dx[] = { 0, 0, -1, 1 };
-	static Queue<Pos> q = new LinkedList<>();
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		R = Integer.parseInt(st.nextToken());
-		C = Integer.parseInt(st.nextToken());
-		map = new char[R][C];
-		move = new int[R][C];
-		water = new int[R][C];
-		visited= new boolean[R][C];
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+
+		map = new char[N][M];
+		water = new int[N][M];
+		move = new int[N][M];
+		visited = new int[N][M];
 		
-		for (int i = 0; i < R; i++) {
+		for (int i=0; i<N; i++) {
 			String s = br.readLine();
-			for (int j = 0; j < C; j++) {
+			for (int j=0; j<M; j++) {
 				map[i][j] = s.charAt(j);
-				if(map[i][j]=='D' || map[i][j]=='X')
+				if (map[i][j] == 'D' || map[i][j] == 'X')
 					water[i][j] = -1;
 			}
 		}
+		
+		//D: 비버의 굴, S: 고슴이 위치, .: 비어있음, *: 물이 차있음, X: 돌 
 		//물 채우기
-		int cnt = 0;
-		for (int i=0; i<R; i++) {
-			for (int j=0; j<C; j++) {
-				if (map[i][j] == '*')
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<M; j++) {
+				if(map[i][j] == '*') {
+					cnt++; //*이 여러군데에서 시작되는 경우를 위해 visited가 boolean이 아닌 cnt보다 작아야 하는 조건이 있어야 함
 					bfsWater(i, j);
-				ResetVisited();
+				}
 			}
 		}
-		ResetVisited();
+		
+		/*System.out.println("물 채우기 ----------");
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<M; j++) {
+				System.out.print(water[i][j]+" ");
+			}
+			System.out.println();
+		}
+		System.out.println("--------------");*/
+		
+		//visited 배열 초기화
+		for (int i=0; i<N; i++)
+			Arrays.fill(visited[i], 0);
 		//고슴도치 움직이기
-		for (int i = 0; i < R; i++) {
-			for (int j = 0; j < C; j++) {
-				if (map[i][j] == 'S') {
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<M; j++) {
+				if(map[i][j] == 'S')
 					bfsMove(i, j);
-				}
 			}
 		}
-	
+		/*System.out.println();
+		System.out.println("고슴도치 이동 경로 -------");
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<M; j++) {
+				System.out.print(move[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println("--------------");*/
+		
 	}
+
 	public static void bfsWater(int y, int x) {
-		q.offer(new Pos(y, x));
-		visited[y][x] = true;
+		q.add(new Pos(y, x));
+		visited[y][x]++;
 		
-		while(!q.isEmpty()) {
-			Pos p = q.poll();
-			for (int i=0; i<4; i++) {
-				int ny = p.y + dy[i];
-				int nx = p.x + dx[i];
-				
-				if (ny >= 0 && ny < R && nx >= 0 && nx < C) {
-					if ((map[ny][nx] == '.' || map[ny][nx] == 'S') && !visited[ny][nx]) {
-						if(water[ny][nx] == 0)
-							water[ny][nx] = water[p.y][p.x] + 1;
-						else if(water[ny][nx] > 0) { 
-							water[ny][nx] = Math.min(water[p.y][p.x] + 1, water[ny][nx]);
-						}
-						q.offer(new Pos(ny, nx));
-						visited[ny][nx] = true;
-					}
-				}
-			}
-		
-		}
-	}
-	public static void bfsMove(int y, int x) {
-		q.offer(new Pos(y, x));
-		visited[y][x] = true;
 		while(!q.isEmpty()) {
 			Pos p = q.poll();
 			
@@ -102,25 +101,49 @@ public class yl_탈출 {
 				int ny = p.y + dy[i];
 				int nx = p.x + dx[i];
 				
-				if (ny >= 0 && ny < R && nx >= 0 && nx < C && !visited[ny][nx]) {
-					if (water[ny][nx] == 0 || water[ny][nx] > move[p.y][p.x] + 1) {
-						move[ny][nx] = move[p.y][p.x] + 1;
-						q.offer(new Pos(ny, nx));
-						visited[ny][nx] = true;
-					}
-					if (map[ny][nx] == 'D') {
-						System.out.println(move[p.y][p.x] + 1);
-						return ;
-					}
+				if (ny < 0 || ny >= N || nx < 0 || nx >= M)
+					continue ;
+				if (visited[ny][nx] <= cnt  && (map[ny][nx] == 'S' || map[ny][nx] == '.')) {
+					if (water[ny][nx] == 0)
+						water[ny][nx] = water[p.y][p.x] + 1;
+					else if (water[ny][nx] > 0)
+						water[ny][nx] = Math.min(water[p.y][p.x] + 1, water[ny][nx]);
+					q.add(new Pos(ny, nx));
+					visited[ny][nx]++;
+				}
+			}
+		}
+	}
+	
+	public static void bfsMove (int y, int x) {
+		q.add(new Pos(y, x));
+		visited[y][x] = 1;
+		
+		while(!q.isEmpty()) {
+			Pos p = q.poll();
+			
+			for (int i=0; i<4; i++) {
+				int ny = p.y + dy[i];
+				int nx = p.x + dx[i];
+				
+				if (ny < 0 || ny >= N || nx < 0 || nx >= M)
+					continue ;
+				if (visited[ny][nx] != 0)
+					continue ;
+				//water[ny][nx] == 0이 있는건 물이 차있는 지역(*)이 없는 경우를 위해.
+				if (water[ny][nx] > move[p.y][p.x] + 1 || water[ny][nx] == 0) {
+					move[ny][nx] = move[p.y][p.x] + 1;
+					q.add(new Pos(ny, nx));
+					visited[ny][nx] = 1;
+				}
+				if (map[ny][nx] == 'D') {
+					// move[ny][nx]를 출력하면 0임. map에 D가 들어간 자리여서 water[ny][nx]가 0이기 때문  
+					System.out.println(move[p.y][p.x] + 1);
+					return ;
 				}
 			}
 		}
 		System.out.println("KAKTUS");
 	}
-	
-	public static void ResetVisited() {
-		for(int i=0; i<R; i++) {
-			Arrays.fill(visited[i], false);
-		}
-	}
+
 }
