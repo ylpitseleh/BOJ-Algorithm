@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 // d[n-2] 의 사각형 오른쪽에 누워진 직사각형 2개가 붙음
-// d[n-1]의 사각형 오른쪽에 세워진 직사각형 1개가 붙음s
+// d[n-1]의 사각형 오른쪽에 세워진 직사각형 1개가 붙음
 public class yl_2xn_타일링 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
