@@ -26,4 +26,5 @@ m.c
 
 # java output files
 *.class
+bin/
 /build/
