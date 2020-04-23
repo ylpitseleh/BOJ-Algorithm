@@ -88,7 +88,6 @@ public class yl_벽_부수고_이동하기 {
 				//System.out.println(p.destroy);
 				// 0일 때
 				if (map[ny][nx] == 0) {
-					
 					visited[ny][nx] = p.destroy;
 					q.add(new Pos(ny, nx, p.dis + 1, p.destroy));
 				}
