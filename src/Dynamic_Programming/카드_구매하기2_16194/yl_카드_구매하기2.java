@@ -1,11 +1,11 @@
-package Dynamic_Programming.카드_구매하기_11052;
+package Dynamic_Programming.카드_구매하기2_16194;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-// dp 연습하기 좋은 문제. 예전에 못 풀었던건데 풀이 안 보고 이중 포문으로 구하는거 생각해내서 풀었다. 뿌-듯
-public class yl_카드_구매하기 {
+
+public class yl_카드_구매하기2 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,9 +20,10 @@ public class yl_카드_구매하기 {
 		
 		for (int i=2; i<=N; i++) {
 			for (int j=1; j<i; j++) {
-				dp[i] = Math.max(dp[i], dp[i-j] + cards[j]);
+				dp[i] = Math.min(dp[i], dp[i-j] + cards[j]);
 			}
 		}
 		System.out.println(dp[N]);
 	}
+
 }
