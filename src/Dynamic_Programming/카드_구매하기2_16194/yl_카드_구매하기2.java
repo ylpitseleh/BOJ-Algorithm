@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-
+// 카드 구매하기에서 min으로만 바꾼 것
 public class yl_카드_구매하기2 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
