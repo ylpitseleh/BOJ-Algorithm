@@ -17,5 +17,4 @@ public class yl_이친수 {
 		}
 		System.out.println(dp[N]);
 	}
-
 }
