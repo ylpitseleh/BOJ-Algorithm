@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 // 두 시간 넘게 알듯 말듯 하다가 결국 못 품. 이렇게 간단한거였다니..진짜 기본적이고 전형적인 dp문제
+// dp말고 이분 탐색으로도 풀 수 있다고 한다.
 public class 다시풀기yl_가장_긴_증가하는_부분_수열 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
