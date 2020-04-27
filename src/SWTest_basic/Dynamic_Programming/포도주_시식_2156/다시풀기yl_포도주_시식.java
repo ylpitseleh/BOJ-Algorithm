@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
  * XOO dp[i-3] + arr[i-1] + arr[i] -> 이 경우를 생각 못 했음
  * 점화식만 생각해내면 되는데 이게 어려움. 결국 배꼈당.
  */
-public class 다시_풀기yl_포도주_시식 {
+public class 다시풀기yl_포도주_시식 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
