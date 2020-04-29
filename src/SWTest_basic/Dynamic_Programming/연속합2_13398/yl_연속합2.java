@@ -1,4 +1,4 @@
-package SWTest_basic.Dynamic_Programming.연속합_13398;
+package SWTest_basic.Dynamic_Programming.연속합2_13398;
 
 import java.io.BufferedReader;
 import java.io.IOException;
