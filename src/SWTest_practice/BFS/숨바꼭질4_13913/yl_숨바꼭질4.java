@@ -1,4 +1,4 @@
-package SWTest_practice.BFS.숨바꼭질4_9019;
+package SWTest_practice.BFS.숨바꼭질4_13913;
 
 import java.io.BufferedReader;
 import java.io.IOException;
