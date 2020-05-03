@@ -1,86 +1,91 @@
 package SWTest_practice.BFS;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class notepad {
+	static Queue<Integer> q = new LinkedList<>();
+	static int T, A, B;
+	static int[] map;
+	static char[] how;
+	static int[] from;
+	static boolean[] visited;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		Scanner sc = new Scanner(System.in);
-		int count = sc.nextInt();
-
-		int from, to = 0;
-		String[] command = new String[100000];
-
-		while (count > 0) {
-			from = sc.nextInt();
-			to = sc.nextInt();
-
-			Queue<Integer> queue = new LinkedList<Integer>();
-
-			for (int i = 0; i < command.length; i++)
-				command[i] = "";
-
-			queue.add(from);
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		T = Integer.parseInt(br.readLine());
+		while(T-->0) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			A = Integer.parseInt(st.nextToken());
+			B = Integer.parseInt(st.nextToken());
 			
-			while (!queue.isEmpty()) {
-				int now = queue.remove();
+			map = new int[10001];
+			how = new char[10001];
+			from = new int[10001];
+			visited = new boolean[10001];
+			
+			q.add(A);
+			visited[A] = true;
+			from[A] = -1;
+			
+			while(!q.isEmpty()) {
+				int cur = q.poll();
+				//D
+				int nx = cur * 2;
+				if(nx>9999)
+					nx %= 10000;
+				if(visited[nx]==false) {
+					q.add(nx);
+					visited[nx] = true;
+					map[nx] = map[cur] + 1;
+					from[nx] = cur;
+					how[nx] = 'D';
+				}
+				//S
+				nx = cur - 1;
+				if(nx==-1)
+					nx = 9999;
+				if(visited[nx]==false) {
+					q.add(nx);
+					visited[nx] = true;
+					map[nx] = map[cur] + 1;
+					from[nx] = cur;
+					how[nx] = 'S';
+				}
 				
-				int doD = doD(now);
-				if(command[doD].equals("")){
-					queue.add(doD);
-					command[doD] = command[now] + "D";
+				//L
+				nx = (cur%1000)*10 + cur/1000; 
+				if(visited[nx]==false) {
+					q.add(nx);
+					visited[nx] = true;
+					map[nx] = map[cur] + 1;
+					from[nx] = cur;
+					how[nx] = 'L';
 				}
-
-				int doS = doS(now);
-				if(command[doS].equals("")){
-					queue.add(doS);
-					command[doS] = command[now] + "S";
+				
+				//R
+				nx = (cur/10) + 1000*(cur%10);
+				if(visited[nx]==false) {
+					q.add(nx);
+					visited[nx] = true;
+					map[nx] = map[cur] + 1;
+					from[nx] = cur;
+					how[nx] = 'R';
 				}
-
-				int doL = doL(now);
-				if(command[doL].equals("")){
-					queue.add(doL);
-					command[doL] = command[now] + "L";
-				}
-
-				int doR = doR(now);
-				if(command[doR].equals("")){
-					queue.add(doR);
-					command[doR] = command[now] + "R";
-				}
+				
 			}
-			
-			System.out.println(command[to]);
-			count--;
+			StringBuilder ans = new StringBuilder();
+			while(B!=A) { //중요
+				ans.append(how[B]);
+				B = from[B];
+			}
+			System.out.println(ans.reverse());
 		}
+		
 	}
-
-	private static int doD(int input) {
-		return (input * 2) % 10000;
-	}
-
-	private static int doS(int input) {
-		if (input==0)
-			return 9999;
-
-		return input - 1;
-	}
-
-	private static int doL(int input) {
-		int front = input % 1000;
-		int back = input / 1000;
-		return front * 10 + back;
-	}
-
-	private static int doR(int input) {
-		int back = input / 10;
-		int front = input % 10;
-
-		return front * 1000 + back;
-	}
-
+	
 }
