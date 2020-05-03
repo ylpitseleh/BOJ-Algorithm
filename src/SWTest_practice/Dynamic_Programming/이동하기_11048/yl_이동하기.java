@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class yl_11048 {
+public class yl_이동하기 {
 	static int N, M;
 	static int[][] map;
 	static int[][] maxCandy;
