@@ -26,6 +26,7 @@ public class yl_로또 {
 			System.out.println();
 		}
 	}
+	// start는 오름차순 정렬 위해서 있는듯?
 	public static void DFS(int start, int depth) {
 		if (depth == 6) {
 			for(int i=0; i<N; i++) {
