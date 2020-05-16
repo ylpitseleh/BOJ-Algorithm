@@ -3,84 +3,74 @@ package SWTest_practice.BFS.퍼즐_1525;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-
 public class yl_퍼즐 {
-	static int map[][];
-	static boolean visited[];
-	static Queue<Pos> q = new LinkedList<Pos>();
-	static class Pos {
-		int y;
-		int x;
+	static int num[];
+	static Queue q = new LinkedList<int []>();
+	static int dx[] = {-1, 1, -3, 3};
 
-		Pos(int y, int x) {
-			this.y = y;
-			this.x = x;
-		}
-	}
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		map = new int[3][3];
-		for (int i=0; i<3; i++) {
+		num = new int[10];
+		int zeroIdx = 0;
+		for (int i=0; i<9; i+=3) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			map[i][0] = Integer.parseInt(st.nextToken());
-			map[i][1] = Integer.parseInt(st.nextToken());
-			map[i][2] = Integer.parseInt(st.nextToken());
-		}
-	
-		visited = new boolean[9]; // 1 ~ 8
-		
-		// 0 자리에 숫자 하나씩 다 넣어보면 되는건가?
-		for (int i=0; i<3; i++) {
 			for (int j=0; j<3; j++) {
-				if (map[i][j] == 0)
-					bfs(i, j);
+				num[i + j] = Integer.parseInt(st.nextToken());
+				if (num[i+j] == 0)
+					zeroIdx = (i+j);
 			}
 		}
-	}
-	
-	public static void bfs(int y, int x) {
-		q.add(new Pos(y, x));
+		int ansArr[] = {1,2,3,4,5,6,7,8,0};
 		
-		while (!q.isEmpty()) {
-			Pos p = q.poll();
+		q.add(num);
+		while(!q.isEmpty()) {
 			
-			for (int X=1; X<=8; X++) {
-				if (!visited[x]) {
-					for (int i=0; i<3; i++) {
-						for (int j=0; j<3; j++) {
-							if (map[i][j] == X) {
-								// 원래 0인 곳 X로 변경
-								map[p.y][p.x] = map[i][j];
-								System.out.println(p.y+" "+p.x+" , "+map[p.y][p.x]);
-								System.out.println("map[i][j] : "+map[i][j]);
-								// 원래 X 자리 0으로 변경
-								map[i][j] = 0;
-								q.add(new Pos(i, j));
-								visited[map[i][j]] = true;
-							}
-							
-							for (int k=0; k<3; k++) {
-								for (int l=0; l<3; l++) {
-									System.out.print(map[k][l]+" ");
-								}
-								System.out.println();
-							}
-							System.out.println();
-							
-						}
-					}
-					
-					
-				}
+			int[] n = (int[]) q.poll();
+			
+			// poll한 배열이 {1,2,3,4,5,6,7,8,0}이면 break;
+			int diffFlag = 0;
+			for (int i=0; i<9; i++) {
+				if (n[i] != ansArr[i])
+					diffFlag = 1;
+			}
+			if (diffFlag == 0) {
+				System.out.println(n[9]);
+				break ;
+			}
+			
+			// 0이 위치한 index 저장
+			for (int i=0; i<9; i++) {
+				if (n[i] == 0)
+					zeroIdx = i;
+			}
+			
+			// -1, 1, -3, 3 (상,하,좌,우) add 
+			for (int x=0; x<4; x++) {
+				int nx = dx[x] + zeroIdx;
+				if(nx < 0 || nx >= 9) 
+					continue ;
 				
+				int arr[] = new int[10];
+				for (int i=0; i<9; i++) {
+					arr[i] = n[i];
+					if (i == zeroIdx)
+						arr[i] = n[nx];
+					if (i == nx)
+						arr[i] = 0;
+				}
+				arr[9] = n[9] + 1; //arr의 9번째 원소에는 카운트 저장
+				q.add(arr);
 			}
 			
 			
 		}
+		
+
 	}
 
 }
