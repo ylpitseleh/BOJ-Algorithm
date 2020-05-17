@@ -3,74 +3,86 @@ package SWTest_practice.BFS.퍼즐_1525;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-
+/*
+ * 푸는데 3시간 걸림.
+ * 메모리 초과 때문에 String을 int로 바꿔서 연산해야 하는데
+ * 0123 -> 123이 되므로 처음에 입력받을때부터 0을 9로 바꿔서 계산하는게 관건.
+ * 주의 !!
+ * 1 0 3
+ * 4 2 5
+ * 7 8 6 에서 3과 4, 5와7은 -1, +1 차이여도 교환 못 함!!! -> 21% 에서 틀렸습니다 나온 이유
+ */
 public class yl_퍼즐 {
-	static int num[];
-	static Queue q = new LinkedList<int []>();
+	static int number = 0;
+	static Queue q = new LinkedList<Integer>();
+	static HashMap hm = new HashMap<Integer, Integer>();
 	static int dx[] = {-1, 1, -3, 3};
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		num = new int[10];
-		int zeroIdx = 0;
 		for (int i=0; i<9; i+=3) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int j=0; j<3; j++) {
-				num[i + j] = Integer.parseInt(st.nextToken());
-				if (num[i+j] == 0)
-					zeroIdx = (i+j);
+				int val = Integer.parseInt(st.nextToken());
+				if (val == 0)
+					val = 9;
+				number = number * 10 + val;
 			}
 		}
-		int ansArr[] = {1,2,3,4,5,6,7,8,0};
 		
-		q.add(num);
+		hm.put(number, 0);
+		int ans = 123456789;
+		
+		q.add(number);
 		while(!q.isEmpty()) {
+			int n =  (int) q.poll();
 			
-			int[] n = (int[]) q.poll();
-			
-			// poll한 배열이 {1,2,3,4,5,6,7,8,0}이면 break;
-			int diffFlag = 0;
-			for (int i=0; i<9; i++) {
-				if (n[i] != ansArr[i])
-					diffFlag = 1;
-			}
-			if (diffFlag == 0) {
-				System.out.println(n[9]);
-				break ;
+			// n이 123456789면 break
+			if (n == ans) {
+				System.out.println(hm.get(n));
+				return ;
 			}
 			
 			// 0이 위치한 index 저장
-			for (int i=0; i<9; i++) {
-				if (n[i] == 0)
-					zeroIdx = i;
-			}
+			String strN = Integer.toString(n);
+			int zeroIdx = strN.indexOf('9');
 			
 			// -1, 1, -3, 3 (상,하,좌,우) add 
 			for (int x=0; x<4; x++) {
+				if (dx[x] == 1) {
+					if (zeroIdx == 2 || zeroIdx == 5)
+						continue ;
+				}
+				if (dx[x] == -1) {
+					if (zeroIdx == 3 || zeroIdx == 6)
+						continue ;
+				}
 				int nx = dx[x] + zeroIdx;
 				if(nx < 0 || nx >= 9) 
 					continue ;
 				
-				int arr[] = new int[10];
+				StringBuilder sb = new StringBuilder(strN);
 				for (int i=0; i<9; i++) {
-					arr[i] = n[i];
 					if (i == zeroIdx)
-						arr[i] = n[nx];
-					if (i == nx)
-						arr[i] = 0;
+						sb.setCharAt(i, strN.charAt(nx));
+					else if (i == nx)
+						sb.setCharAt(i, '9');
 				}
-				arr[9] = n[9] + 1; //arr의 9번째 원소에는 카운트 저장
-				q.add(arr);
+				
+				int nn = Integer.parseInt(sb.toString());
+				
+				if (!hm.containsKey(nn)) {
+					hm.put(nn, (int)hm.get(n) + 1);
+					q.add(nn);
+				}
 			}
-			
-			
 		}
 		
-
+		System.out.println(-1);
 	}
 
 }
