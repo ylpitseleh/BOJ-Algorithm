@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-
+// while문, 같은 방향으로 모두 더해주는 것만 생각해내면 쉽다.
 
 public class yl_레이저_통신 {
 	static class Pos {
