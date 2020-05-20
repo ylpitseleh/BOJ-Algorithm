@@ -72,7 +72,7 @@ public class yl_로봇_청소기 {
                  */
                 visited = new boolean[al.size()];
                 ans = Integer.MAX_VALUE;
-                dfs(0, 0, al.size() - 1, 0, d);
+                dfs(0, 0, al.size() - 1, 0, d); //자기 위치는 0이니까 검사 안 해도 돼서 al.size()-1
                 System.out.println(ans);
             }while(true);
     }
@@ -81,6 +81,7 @@ public class yl_로봇_청소기 {
     static int ans;
     private static void dfs(int num, int sum, int end, int index, int[][] d) {
         if(index == end) {
+        	// ans에 최소값 저장
             ans = Math.min(ans, sum);
             return;
         }
@@ -89,8 +90,8 @@ public class yl_로봇_청소기 {
             if (visited[i]) 
             	continue;
             visited[i] = true;
-            int next = sum+d[num][i];
-            dfs(i,next, end, index+1, d);
+            int next = sum + d[num][i];
+            dfs(i, next, end, index+1, d);
             visited[i] = false;
         }
     }
