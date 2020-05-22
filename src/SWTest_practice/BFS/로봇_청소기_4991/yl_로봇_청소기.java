@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.Scanner;
 // https://developer-pi.tistory.com/45
 // bfs + dfs 죽음의 콜라보. 나중에 꼭 다시 풀어보기....
+// bfs로 각각 더러운 지점에서 다른 더러운 지점까지 구한 다음 dfs 순열(백트래킹)로 최단 노선 구하면 됨.
 public class yl_로봇_청소기 {
 	static class Pos{
         int y;
