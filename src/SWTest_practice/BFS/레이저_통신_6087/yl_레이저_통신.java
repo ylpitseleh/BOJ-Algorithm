@@ -32,57 +32,58 @@ public class yl_레이저_통신 {
 		map = new char[H][W];
 		visited = new int[H][W];
 		
-		int startY = -1, startX = -1, endY = 0, endX = 0;
-		for(int i=0; i<H; i++) {
+		int startY = -1, startX = -1;
+		int endY = 0, endX = 0;
+		for (int i=0; i<H; i++) {
 			String s = br.readLine();
-			for(int j=0; j<W; j++) {
+			for (int j=0; j<W; j++) {
 				map[i][j] = s.charAt(j);
-				if(map[i][j]=='C') {
-					if (startY == -1) { // 처음 나오는 'C'
+				if (map[i][j] == 'C') {
+					if (startY == -1 && startX == -1) {
 						startY = i;
 						startX = j;
 					}
-					else { // 두 번째 나온 'C'
+					else {
 						endY = i;
 						endX = j;
 					}
 				}
 			}
 		}
-		
 		q.add(new Pos(startY, startX));
 		visited[startY][startX] = 1;
 		
 		while (!q.isEmpty()) {
 			Pos p = q.poll();
 			
+			if (p.y == endY && p.x == endX)
+				break ;
+			
 			for (int i=0; i<4; i++) {
 				int ny = p.y + dy[i];
 				int nx = p.x + dx[i];
 				
-				// 첫 번째 핵심 로직 - while문 : visited[ny][nx]부터 현재 방향(dy[i], dx[i])으로 쭉 다 더해줌.
 				while (ny >= 0 && ny < H && nx >= 0 && nx < W) {
-					if (map[ny][nx] == '*') // 벽이면 continue가 아니라 break로 멈춰야 함.
+					if (map[ny][nx] == '*')
 						break ;
-					if (visited[ny][nx] == 0) { //map[ny][nx] == '.' or 'C'일 때
-						visited[ny][nx] = visited[p.y][p.x] + 1;
+					if (visited[ny][nx] == 0) {
 						q.add(new Pos(ny, nx));
+						visited[ny][nx] = visited[p.y][p.x] + 1;
 					}
-					ny += dy[i]; // 두 번째 핵심 로직 -> 직선으로 쭉 다 더해줌.
+					ny += dy[i]; // 직선으로 쭉 다 더해줌. 이걸 생각해내는게 중요. 
 					nx += dx[i];
 				}
 			}
 		}
 		
-		
-		for (int k=0; k<H; k++) {
+		/*
+		for (int i=0; i<H; i++) {
 			for (int j=0; j<W; j++) {
-				System.out.print(visited[k][j]+" ");
+				System.out.print(visited[i][j]);
 			}
 			System.out.println();
 		}
-		System.out.println();
-		
+		*/
 		System.out.println(visited[endY][endX] - 2);
 	}
 

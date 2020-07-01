@@ -8,7 +8,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 import java.util.StringTokenizer;
-
+/*
+ *  문은 발견했지만 key가 없을 때 나중에 key 발견할 경우 대비해서 HashSet에 넣어주기,
+ *  처음에  map 배열에 위쪽, 왼쪽 한 칸씩 공백 넣어주기
+ *  이 두 가지 아이디어만 제외하면 새로울 게 없음. 전체적으로 어렵지 않음. 
+ */
 public class yl_열쇠 {
 	static Queue<Pos> q = new LinkedList<>();
 	static int T, h, w, ans;
@@ -39,10 +43,11 @@ public class yl_열쇠 {
 			key = new HashSet<>();
 			door = new HashSet<>();
 			ans = 0;
-			for (int i = 1; i < h+1; i++) {
+			// i = 1 부터 시작해서 위로 한 칸 공백 만들기
+			for (int i = 1; i <= h; i++) {
 				String s = br.readLine();
-				for (int j = 1; j < w+1; j++) {
-					// 위쪽, 왼쪽 한 칸씩 공백만들기
+				// j = 1 부터 시작해서 왼쪽으로 한 칸 공백 만들기
+				for (int j = 1; j <= w; j++) {
 					map[i][j] = s.charAt(j-1);
 				}
 			}

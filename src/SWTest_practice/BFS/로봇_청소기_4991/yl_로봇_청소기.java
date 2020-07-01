@@ -37,7 +37,7 @@ public class yl_로봇_청소기 {
                         map[i][j] = s.charAt(j);
                         if(map[i][j]=='o') {
                             al.add(0, new Pos(i,j)); //첫 번째로 시작해야 하므로 0번째에 넣어줌.
-                        }else if(map[i][j]=='*') {
+                        } else if(map[i][j]=='*') {
                             al.add(new Pos(i,j));
                         }
                     }
@@ -117,7 +117,7 @@ public class yl_로봇_청소기 {
                 	continue;
                 if (map[ny][nx] == 'x') 
                 	continue;
-                if (dist[ny][nx] <= dist[p.y][p.x]+1) 
+                if (dist[ny][nx] <= dist[p.y][p.x] + 1)
                 	continue;
                 dist[ny][nx] = dist[p.y][p.x] + 1;
                 q.add(new Pos(ny,nx));
