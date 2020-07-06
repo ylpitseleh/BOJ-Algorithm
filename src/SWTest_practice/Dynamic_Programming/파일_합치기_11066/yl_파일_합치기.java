@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-
+// https://heedipro.tistory.com/265
 public class yl_파일_합치기 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {

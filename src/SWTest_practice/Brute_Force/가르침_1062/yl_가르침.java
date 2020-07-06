@@ -66,9 +66,8 @@ public class yl_가르침 {
 		visited = new boolean[permuAlphaN];
 		dfs(0, 0);
 		System.out.println(max);
-		
-		
 	}
+	
 	public static void dfs(int start, int depth) {
 		if (depth == Math.min(K, permuAlphaN)) {
 			HashSet<Character> hs = new HashSet<Character>();
