@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
-
+/*
+ * 브랜디 코테 3번 풀으려면 벨만 포드 알고리즘 써야해서 연습 하려고 푼 문제.
+ * 나중에 다시 풀어보기.
+ * 푸는데 3시간 소요 우왕 실화냐 ㅋㅋ
+ */
 public class 타임머신 {
 	static class Bus {
 		int start, end, weight;
