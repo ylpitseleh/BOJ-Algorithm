@@ -1,4 +1,4 @@
-package ETC;
+package ETC.TwoPointer_SlidingWindow;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class N번째_큰_수 {
+public class N번째_큰_수_2075 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
