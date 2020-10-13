@@ -4,7 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-
+/*
+ * 소요 시간: 10분
+ * ★☆☆☆☆, Cheating : X
+ * 쉬운 투포인터 문제.
+ */
 public class 부분합_1806 {
 	static long N, M;
 	static long arr[];
