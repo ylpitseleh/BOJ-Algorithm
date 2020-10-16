@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 /*
- * 소요 시간: 1시간
- * ★☆☆☆☆, Cheating : O
- * 이거 완전 프로그래머스 보석 쇼핑이랑 똑같은거같은디
+ * 소요 시간: 40분
+ * ★☆☆☆☆, Cheating : X
+ * 쉬운 슬라이딩 윈도우 문제다. 
  */
 public class 회전_초밥_2531 {
 
@@ -16,7 +16,7 @@ public class 회전_초밥_2531 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int N = Integer.parseInt(st.nextToken()); // 회전 초밥 벨트에 놓인 접시의 수
-		int d = Integer.parseInt(st.nextToken()); // 메뉴에 있는 초밥의 가짓수
+		int d = Integer.parseInt(st.nextToken()); // 메뉴에 있는 초밥의 가짓수 (이건 hm 안 쓰고 d크기만큼 visited 배열 만들 때 쓰는듯.)
 		int k = Integer.parseInt(st.nextToken()); // 연속해서 먹는 접시의 수
 		int c = Integer.parseInt(st.nextToken()); // 쿠폰 번호
 		
@@ -34,6 +34,7 @@ public class 회전_초밥_2531 {
 		
 		HashMap<Integer, Integer> hm = new HashMap<>();
 		int answer = 0;
+		// 먼저, 0부터 k-1까지 hm에 넣어준다.
 		for (int i=0; i<k; i++) {
 			if (hm.containsKey(sushi[i])) {
 				hm.put(sushi[i], hm.get(sushi[i])+1);
