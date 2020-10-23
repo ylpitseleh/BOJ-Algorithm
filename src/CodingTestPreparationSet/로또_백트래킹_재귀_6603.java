@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class 로또_백트래킹_재귀 {
+public class 로또_백트래킹_재귀_6603 {
 	static int N;
 	static int[] arr;
 	static boolean[] visited;
