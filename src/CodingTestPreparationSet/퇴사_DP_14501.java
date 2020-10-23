@@ -22,9 +22,11 @@ public class 퇴사_DP_14501 {
 		}
 		int max = 0;
 		for (int i=0; i<N; i++) {
-			dp[i] = Math.max(dp[i], max);
+			// i일까지 일했을 최대이익값으로 dp[i]도 새로 갱신해줌
+			dp[i] = Math.max(dp[i], max); // 이전에 dp[time[i]+i]로 값이 있을수도 있으니
 			// 원래값 vs 이번 움직임으로 생긴 최대 수익
 			dp[time[i]+i] = Math.max(dp[time[i]+i], price[i] + dp[i]);
+			// i일까지 일했을 때 최대이익
 			max = Math.max(max, dp[i]);
 		}
 		
